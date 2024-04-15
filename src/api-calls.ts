@@ -1,5 +1,5 @@
 interface PlayGameRequest {
-  userName: string;
+  username: string;
   betAmount: number;
 }
 
@@ -14,7 +14,7 @@ export interface GameResponse {
 const BASE_URL = "http://localhost:8080"; // Adjust this URL to match your backend's URL
 
 export const playGame = (request: PlayGameRequest): Promise<GameResponse> => {
-  return fetch(`${BASE_URL}/playGame`, {
+  return fetch(`${BASE_URL}/api/playGame`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -61,7 +61,7 @@ export const stand = (request: PlayGameRequest): Promise<GameResponse> => {
 // Test Case
 const testPlayGame = () => {
   const request: PlayGameRequest = {
-    userName: "mattk",
+    username: "mattk",
     betAmount: 1000,
   };
 
