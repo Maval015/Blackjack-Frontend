@@ -35,6 +35,7 @@ function LogIn() {
       if (response.ok) {
         console.log("User logged in successfully");
       } else {
+        console.log(response.text().then((text) => console.log(text)))
         console.error("Error logging in user");
       }
     } catch (error) {
