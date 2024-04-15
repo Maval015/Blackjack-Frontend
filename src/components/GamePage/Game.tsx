@@ -86,7 +86,10 @@ export function Game() {
     <>
       <NavBar />
       <div className="gameTable">
+        <div className="table">
         <img src="/assets/table.png" alt="Game Table" />
+        </div>
+
         <div>
           <h3>Place Your Bet!</h3>
           <p>Amount Selected: ${betAmount}</p>

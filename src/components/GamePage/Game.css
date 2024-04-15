@@ -10,4 +10,10 @@
       format("truetype");
   }
 
-  
+.gameTable {
+    display: flex;
+}
+
+.table {
+    padding-left: 100px;
+}
