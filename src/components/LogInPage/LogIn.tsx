@@ -53,7 +53,7 @@ function LogIn() {
 
   useEffect(() => {
     if (user) {
-      navigate("/Game");
+      navigate("/PlaceBet");
     }
   }, [user, navigate]);
 
