@@ -7,7 +7,7 @@ function HomePage() {
     <>
       <div>
         <div className="backgroundImg">
-          <img src="/public/assets/casino-pic.jpg" alt="Background Image" />
+          <img src="/public/assets/casino-pic.jpg" alt="" />
         </div>
         <div className="topBar">
           <h1 className="logoText">BlackJack</h1>

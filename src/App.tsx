@@ -6,7 +6,8 @@ import HomePage from "./components/HomePage/Home";
 import LogIn from "./components/LogInPage/LogIn";
 import CreateAccount from "./components/CreateAccountPage/CreateAccount";
 import { UserAuthProvider } from "./components/user-auth-context";
-import { Game } from "./components/GamePage/Game";
+import { PlaceBet } from "./components/PlaceBetPage/PlaceBet";
+import GamePlay from "./components/GamePage/GamePlay";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/LogIn" element={<LogIn />} />
           <Route path="/CreateAccount" element={<CreateAccount />} />
-          <Route path="/Game" element={<Game />} />
+          <Route path="/PlaceBet" element={<PlaceBet />} />
+          <Route path="/GamePlay" element={<GamePlay />} />
           <Route path="*" element={<p>Not found</p>} />
         </Routes>
       </Router>
