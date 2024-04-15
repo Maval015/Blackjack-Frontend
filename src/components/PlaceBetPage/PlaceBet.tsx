@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../LogInPage/NavBar";
-import { GameResponse, hit, playGame, stand } from "../../api-calls";
+import { GameResponse, playGame } from "../../api-calls";
 import { UserAuthContext } from "../user-auth-context";
 
 const BASE_URL = "http://localhost:8080";
 
-export function Game() {
+export function PlaceBet() {
   const [gameState, setGameState] = useState<GameResponse>({
     playerHand: JSON.stringify([]),
     playerScore: 0,
@@ -28,7 +28,7 @@ export function Game() {
     playGame({ username: user!, betAmount })
       .then((response) => {
         setGameState(response);
-        navigate("/gameplay");
+        navigate("/GamePlay");
       })
       .catch((error) => {
         console.error("Failed to start game", error);
@@ -41,25 +41,25 @@ export function Game() {
     }
   }, [user]);
 
-  const handleHit = () => {
-    hit({ username, betAmount })
-      .then((response) => {
-        setGameState(response);
-      })
-      .catch((error) => {
-        console.error("Failed to hit", error);
-      });
-  };
+  // const handleHit = () => {
+  //   hit({ username, betAmount })
+  //     .then((response) => {
+  //       setGameState(response);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Failed to hit", error);
+  //     });
+  // };
 
-  const handleStand = () => {
-    stand({ username, betAmount })
-      .then((response) => {
-        setGameState(response);
-      })
-      .catch((error) => {
-        console.error("Failed to stand", error);
-      });
-  };
+  // const handleStand = () => {
+  //   stand({ username, betAmount })
+  //     .then((response) => {
+  //       setGameState(response);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Failed to stand", error);
+  //     });
+  // };
 
   useEffect(() => {
     const fetchUserTokens = async () => {
@@ -87,7 +87,7 @@ export function Game() {
       <NavBar />
       <div className="gameTable">
         <div className="table">
-        <img src="/assets/table.png" alt="Game Table" />
+          <img src="/assets/table.png" alt="Game Table" />
         </div>
 
         <div>
