@@ -18,7 +18,6 @@ function HomePage() {
           />
         </div>
 
-
         <div className="centerBoth">
           <div className="homePageContainers">
             <div className="welcomeText">

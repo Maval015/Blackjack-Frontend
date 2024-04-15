@@ -55,6 +55,7 @@
 
 /* end of NavBar */
 
+
   .formContainer {
     display: flex;
     justify-content: center;
@@ -84,6 +85,7 @@
     display: flex;
     gap: 5px;
     font-family: 'Alegreya Sans';
+
     padding-bottom: 20px;
   }
 

@@ -44,7 +44,7 @@ function LogIn() {
 
   return (
     <>
-      <NavBar/>
+      <NavBar />
 
       <div className="formContainer">
         <div className="logInForm">
