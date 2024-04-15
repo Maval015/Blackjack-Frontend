@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../LogInPage/NavBar";
-import { GameResponse, hit, playGame, stand } from "../../api-calls";
+import { PlayGameRequest, GameResponse, hit, playGame, stand } from "../../api-calls";
 import { UserAuthContext } from "../user-auth-context";
 
 const BASE_URL = "http://localhost:8080";
@@ -25,13 +25,15 @@ export function Game() {
   const startGame = () => {
     if (!user || !username) return;
 
-    playGame({ username: user!, betAmount })
+    const request: PlayGameRequest = { username: user, betAmount };
+    playGame(request)
       .then((response) => {
+        console.log("Game started successfully:", response);
         setGameState(response);
-        navigate("/gameplay");
+        navigate("/GamePlay");
       })
       .catch((error) => {
-        console.error("Failed to start game", error);
+        console.error("Error starting game:", error);
       });
   };
 
@@ -81,6 +83,7 @@ export function Game() {
   }, [user]);
 
   const betAmounts = [5, 10, 50, 100, 500, 1000] as const;
+  
 
   return (
     <>
@@ -115,7 +118,7 @@ export function Game() {
           <p>{user}</p>
           <p>Available Tokens: ${userTokens}</p>
           <button onClick={() => setBetAmount(0)}>Clear bet amount</button>
-          <button onClick={startGame}>PLAY</button>
+          <button onClick={() => startGame()}>PLAY</button>
         </div>
       </div>
 
