@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, redirect } from "react-router-dom";
 import "./CreateAccount.css";
 import "../LogInPage/LogIn.css";
 import NavBar from "../LogInPage/NavBar";
+import { UserAuthContext } from "../user-auth-context";
 
 const BASE_URL = "http://localhost:8080";
 
@@ -11,6 +12,8 @@ function CreateAccount() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const { setUser } = useContext(UserAuthContext);
 
   const handleEmail = (event: {
     target: { value: React.SetStateAction<string> };
@@ -55,6 +58,8 @@ function CreateAccount() {
       });
       if (response.ok) {
         console.log("Account created successfully");
+        setUser(username);
+        return redirect("/Game");
       } else {
         console.error("Error creating account");
       }

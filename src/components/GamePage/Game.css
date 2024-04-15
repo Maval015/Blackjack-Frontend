@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Alegreya_SC";
+    src: url("/public/fonts/Alegreya_SC/AlegreyaSC-Regular.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Alegreya_Sans";
+    src: url("/public/fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf")
+      format("truetype");
+  }
+
+  

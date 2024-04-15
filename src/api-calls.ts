@@ -3,7 +3,7 @@ interface PlayGameRequest {
   betAmount: number;
 }
 
-interface GameResponse {
+export interface GameResponse {
   playerHand: string;
   playerScore: number;
   dealerHand: string;
