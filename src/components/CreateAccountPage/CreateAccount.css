@@ -10,60 +10,13 @@
       format("truetype");
   }
 
-.navBar {
-    background-color: #871c25;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    position: sticky;
-  }
-  
-  .logo {
-    display: flex;
-    gap: 10px;
-    font-family: 'Alegreya SC';
-    font-size: 30px;
-    margin-left: 30px;
-  }
-  
-  .cardLogo {
-    width: 65px;
-  }
-  
-  .navLinks {
-    display: flex;
-    font-family: 'Alegreya Sans';
-    font-size: 30px;
-    text-decoration: underline;
-  }
-  
-  .profileLink {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-right: 50px;
-  }
-  
-  .socialLink {
-    margin-right: 120px;
-  }
-  
-  body {
-    background-color: #007246;
-  }
-
-/* end of NavBar */
-
-
   .formContainer {
     display: flex;
     justify-content: center;
     margin-top: 100px;
-    
   }
 
-  .logInForm {
+  .createAccForm {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,16 +29,15 @@
     border-radius: 20px;
   }
 
-  .logInText {
+  .createAccText {
     font-family: 'Alegreya SC';
     font-size: 45px;
   }
 
-  .signUpTextContainer {
+  .createAccTextContainer {
     display: flex;
     gap: 5px;
     font-family: 'Alegreya Sans';
-
     padding-bottom: 20px;
   }
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./LogIn.css";
+import NavBar from "./NavBar";
 
 const BASE_URL = "http://localhost:8080";
 
@@ -14,7 +15,7 @@ function LogIn() {
     setUsername(event.target.value);
   };
 
-  const handlePasswordChange = (event: {
+  const handlePassword = (event: {
     target: { value: React.SetStateAction<string> };
   }) => {
     setPassword(event.target.value);
@@ -43,49 +44,39 @@ function LogIn() {
 
   return (
     <>
-      <div className="navBar">
-        <div className="logo">
-          <h1>BlackJack</h1>
-          <img
-            className="cardLogo"
-            src="assests/logo-cards.svg"
-            alt="BlackJack Logo"
-          />
-        </div>
-        <div className="navLinks">
-          <h3 className="socialLink">Social</h3>
-          <div className="profileLink">
-            <img src="assests/profile-icon.svg" alt="Profile Icon" />
-            <h3>Profile</h3>
-          </div>
-        </div>
-      </div>
+      <NavBar />
 
       <div className="formContainer">
         <div className="logInForm">
           <h2 className="logInText">LOGIN</h2>
           <div className="signUpTextContainer">
-            <p className="signupText">Don't have an account yet?</p>
+            <p>Don't have an account yet?</p>
             <Link to="/CreateAccount">Sign Up</Link>
           </div>
 
-          <form onSubmit={handleSubmit}>
-            <label>
-              Username:
-              <input type="text" value={username} onChange={handleUsername} />
-            </label>
-            <label>
-              Password:
-              <input
-                type="password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </label>
-            <button type="submit">Log In</button>
-          </form>
+            <form onSubmit={handleSubmit}>
+              <div className="formGroup">
+                <label htmlFor="username">Username: </label>
+                <input
+                  type="text"
+                  id="username"
+                  value={username}
+                  onChange={handleUsername}
+                />
+              </div>
+              <div className="formGroup">
+                <label htmlFor="password">Password: </label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={handlePassword}
+                />
+              </div>
+              <button type="submit">Log In</button>
+            </form>
+          </div>
         </div>
-      </div>
     </>
   );
 }
