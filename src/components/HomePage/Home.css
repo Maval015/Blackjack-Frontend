@@ -122,7 +122,7 @@
     width: 100vw;
     height: 100vw;
     z-index: -1;
-    background-image: url(/public/assests/casino-pic.jpg);
+    background-image: url(/public/assets/casino-pic.jpg);
     background-size: cover;
     background-position: center;
     filter: blur(10px);
