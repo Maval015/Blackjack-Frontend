@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../LogInPage/NavBar";
 import { GameResponse, hit, playGame, stand } from "../../api-calls";
 import { UserAuthContext } from "../user-auth-context";
@@ -15,24 +15,34 @@ export function Game() {
     gameOutcome: "",
   });
 
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [betAmount, setBetAmount] = useState(0);
   const [userTokens, setUserTokens] = useState(0);
 
   const { user } = useContext(UserAuthContext);
+  const navigate = useNavigate();
 
   const startGame = () => {
-    playGame({ userName: user!, betAmount })
+    if (!user || !username) return;
+
+    playGame({ username: user!, betAmount })
       .then((response) => {
         setGameState(response);
+        navigate("/gameplay");
       })
       .catch((error) => {
         console.error("Failed to start game", error);
       });
   };
 
+  useEffect(() => {
+    if (user) {
+      setUsername(user);
+    }
+  }, [user]);
+
   const handleHit = () => {
-    hit({ userName, betAmount })
+    hit({ username, betAmount })
       .then((response) => {
         setGameState(response);
       })
@@ -42,7 +52,7 @@ export function Game() {
   };
 
   const handleStand = () => {
-    stand({ userName, betAmount })
+    stand({ username, betAmount })
       .then((response) => {
         setGameState(response);
       })
@@ -105,7 +115,7 @@ export function Game() {
           <p>{user}</p>
           <p>Available Tokens: ${userTokens}</p>
           <button onClick={() => setBetAmount(0)}>Clear bet amount</button>
-          <button>PLAY</button>
+          <button onClick={startGame}>PLAY</button>
         </div>
       </div>
 
