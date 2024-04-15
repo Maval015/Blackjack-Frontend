@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "Alegreya_SC";
+    src: url("/public/fonts/Alegreya_SC/AlegreyaSC-Regular.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Alegreya_Sans";
+    src: url("/public/fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf")
+      format("truetype");
+  }
+
+  .formContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .createAccForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    height: fit-content;
+    background-color: white;
+    padding: 20px;
+    border: 10px solid #DDDDDD;
+    border-radius: 20px;
+  }
+
+  .createAccText {
+    font-family: 'Alegreya SC';
+    font-size: 45px;
+  }
+
+  .createAccTextContainer {
+    display: flex;
+    gap: 5px;
+    font-family: 'Alegreya Sans';
+    padding-bottom: 20px;
+  }
+
+  .formGroup {
+    margin-bottom: 20px;
+  }

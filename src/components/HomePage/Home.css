@@ -1,0 +1,129 @@
+@font-face {
+    font-family: "Alegreya_SC";
+    src: url("/public/fonts/Alegreya_SC/AlegreyaSC-Regular.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Alegreya_Sans";
+    src: url("/public/fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf")
+      format("truetype");
+  }
+
+  * {
+    margin: 0;
+  }
+  
+  /* Header */
+  .topBar {
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #871c25;
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  .logoText {
+    font-family: "Alegreya_SC";
+    font-size: 100px;
+    color: white;
+  }
+  
+  .logoImg {
+    width: 100px;
+    height: auto;
+  }
+  
+  /* for the Welcome text and Ready to Play containers */
+  .homePageContainers {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .centerBoth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Welcome Text Box*/
+  .welcomeText {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 650px;
+    height: fit-content;
+    padding: 70px;
+    margin: 100px;
+    font-family: "Alegreya Sans";
+    background-color: #007246;
+    color: white;
+    border: 10px solid #008e58;
+    border-radius: 20px;
+    font-size: 41px;
+  }
+  
+  /* ReadyToPlay Box*/
+  .readyToPlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 400px;
+    height: fit-content;
+    padding: 60px;
+    margin: 120px;
+    font-family: 'Alegreya Sans';
+    background-color: white;
+    border: 10px solid #DDDDDD;
+    border-radius: 20px;
+    font-size: 41px;
+  }
+  
+  .R2PTitle{
+    font-size: 64px;
+  }
+  
+  .orText {
+    font-size: 36px;
+    margin-bottom: -20px;
+    margin-top: -20px
+  }
+  
+  .redButton {
+    background-color: #871c25;
+    color: white;
+    font-family: 'Alegreya Sans';
+    font-size: 36px;
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: fit-content;
+    transition: all 0.2s ease;
+  }
+  
+  .redButton:hover {
+    transform: scale(1.1);
+    font-size: 37px;
+  }
+  
+  /* Background Image for Landing Page */
+  .backgroundImg {
+    position: fixed;
+    top: 0;
+    left: -10px;
+    width: 100vw;
+    height: 100vw;
+    z-index: -1;
+    background-image: url(/public/assests/casino-pic.jpg);
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+  }
+  
