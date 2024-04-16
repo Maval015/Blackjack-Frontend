@@ -10,15 +10,42 @@
     format("truetype");
 }
 
-.table {
-  display: flex;
-  justify-content: flex-end; /* Move the image to the right */
-}
 
-.standHitContainers {
+.tableContainer1 {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 200px;
+}
+
+.table1 {
+  position: absolute;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.standHitContainers {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 75px;
+  margin-left: 70%;
+  padding-top: 50px;
+}
+
+.standButton1,
+.hitButton1 {
+  height: 170px;
+  width: 170px;
+  border-radius: 50%;
+  border: none;
+  background-color: #323232;
+  font-family: "Alegreya SC";
+  font-size: 32px;
+  color: white;
 }
 
 .playerCards,

@@ -44,3 +44,31 @@
   .formGroup {
     margin-bottom: 20px;
   }
+
+  .createAccButton {
+    background-color: #871c25;
+    color: white;
+    font-family: 'Alegreya Sans';
+    font-size: 26px;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: fit-content;
+    transition: all 0.2s ease;
+    text-align: center;
+    
+  }
+  
+  .createAccButton:hover {
+    transform: scale(1.1);
+    font-size: 27px;
+  }
+
+  .createAccContainer {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+  }
