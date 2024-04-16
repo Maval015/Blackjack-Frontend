@@ -117,7 +117,9 @@ function CreateAccount() {
                 onChange={handleConfirmPassword}
               />
             </div>
-            <button type="submit">Create Account</button>
+            <div className="createAccContainer">
+              <button className="createAccButton" type="submit">Create Account</button>
+            </div>
           </form>
         </div>
       </div>

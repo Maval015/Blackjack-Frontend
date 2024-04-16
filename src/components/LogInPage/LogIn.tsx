@@ -41,7 +41,7 @@ function LogIn() {
         console.log("User logged in successfully");
         setUser(username);
       } else {
-        console.log(response.text().then((text) => console.log(text)))
+        console.log(response.text().then((text) => console.log(text)));
         console.error("Error logging in user");
         setUser(null);
       }
@@ -88,7 +88,11 @@ function LogIn() {
                 onChange={handlePassword}
               />
             </div>
-            <button type="submit">Log In</button>
+            <div className="logInContainer">
+              <button className="logInButton" type="submit">
+                Log In
+              </button>
+            </div>
           </form>
         </div>
       </div>
