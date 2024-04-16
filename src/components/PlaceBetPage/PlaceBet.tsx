@@ -4,20 +4,15 @@ import NavBar from "../LogInPage/NavBar";
 import { PlayGameRequest, GameResponse, playGame } from "../../api-calls";
 import { UserAuthContext } from "../user-auth-context";
 import "./PlaceBet.css";
+import { GameStateContext } from "../game-state-context";
 
 const BASE_URL = "http://localhost:8080";
 
 function PlaceBet() {
-  const [gameState, setGameState] = useState<GameResponse>({
-    playerHand: JSON.stringify([]),
-    playerScore: 0,
-    dealerHand: JSON.stringify([]),
-    dealerScore: 0,
-    gameOutcome: "",
-  });
+  const { gameState, setGameState } = useContext(GameStateContext);
+  const { betAmount, setBetAmount } = useContext(GameStateContext);
 
   const [username, setUsername] = useState("");
-  const [betAmount, setBetAmount] = useState(0);
   const [userTokens, setUserTokens] = useState(0);
 
   const { user } = useContext(UserAuthContext);
@@ -26,8 +21,7 @@ function PlaceBet() {
   const startGame = () => {
     if (!user || !username) return;
 
-    const request: PlayGameRequest = { username: user, betAmount };
-    playGame(request)
+    playGame({ username: user, betAmount })
       .then((response) => {
         console.log("Game started successfully:", response);
         setGameState(response);
