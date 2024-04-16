@@ -8,30 +8,25 @@ import { UserAuthProvider } from "./components/user-auth-context";
 import PlaceBet from "./components/PlaceBetPage/PlaceBet";
 import GamePlay from "./components/GamePage/GamePlay";
 import { GameResponse } from "./api-calls";
+import { GameStateProvider } from "./components/game-state-context";
 
 
 function App() {
-
-  const [gameState, setGameState] = useState<GameResponse>({
-    playerHand: JSON.stringify([]), // Initial empty array for player hand
-    playerScore: 0,
-    dealerHand: JSON.stringify([]), // Initial empty array for dealer hand
-    dealerScore: 0,
-    gameOutcome: "",
-  });
   
   return (
     <UserAuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/LogIn" element={<LogIn />} />
-          <Route path="/CreateAccount" element={<CreateAccount />} />
-          <Route path="/PlaceBet" element={<PlaceBet />} />
-          <Route path="/GamePlay" element={<GamePlay gameState={gameState} />} />
-          <Route path="*" element={<p>Not found</p>} />
-        </Routes>
-      </Router>
+      <GameStateProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/LogIn" element={<LogIn />} />
+            <Route path="/CreateAccount" element={<CreateAccount />} />
+            <Route path="/PlaceBet" element={<PlaceBet />} />
+            <Route path="/GamePlay" element={<GamePlay />} />
+            <Route path="*" element={<p>Not found</p>} />
+          </Routes>
+        </Router>
+      </GameStateProvider>
     </UserAuthProvider>
   );
 }

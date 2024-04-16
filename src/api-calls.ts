@@ -62,22 +62,3 @@ export const stand = (request: PlayGameRequest): Promise<GameResponse> => {
     return response.json();
   });
 };
-
-// Test Case
-const testPlayGame = () => {
-  const request: PlayGameRequest = {
-    username: "mattk",
-    betAmount: 1000,
-  };
-
-  playGame(request)
-    .then((response) => {
-      console.log("playGame response:", response);
-    })
-    .catch((error) => {
-      console.error("Error:", error.message);
-    });
-};
-
-// Run the test case
-testPlayGame();

@@ -8,13 +8,19 @@
     justify-content: space-between;
     padding: 5px;
     background-color: white;
+    font-size: 30px;
   }
   
-  .card-top,
-  .card-bottom {
+  .card-top {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 20px;
+  }
+  
+  .card-bottom {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
   }
   
   .card-center {
@@ -29,4 +35,5 @@
   .hearts {
     color: red;
   }
+
   
