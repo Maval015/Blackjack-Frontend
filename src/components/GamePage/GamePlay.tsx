@@ -4,8 +4,9 @@ import { GameResponse, hit, stand } from "../../api-calls";
 import "./GamePlay.css";
 import NavBar from "../LogInPage/NavBar";
 import { GameStateContext } from "../game-state-context";
+import { UserAuthContext } from "../user-auth-context";
 
-interface GamePlayProps {
+export interface GamePlayProps {
   gameState: GameResponse;
 }
 
@@ -22,13 +23,13 @@ function GamePlay() {
 
   const { gameState, setGameState } = useContext(GameStateContext);
   const [username] = useState("");
+  const { user } = useContext(UserAuthContext);
 
   const parseCard = (cardString: string) => {
     const [rank, suit] = cardString.split(" of ");
     return { rank, suit };
   };
-  
-  
+
   const handleHit = () => {
     hit({
       username,
@@ -71,6 +72,8 @@ function GamePlay() {
       <div className="tableContainer1">
         <div className="table1">
           <img src="/assets/table.png" alt="Game Table" />
+          <p className="dealer">DEALER</p>
+          <p className="userName1">{user}</p>
         </div>
         <div className="standHitContainers">
           <button className="standButton1" onClick={() => handleStand()}>
@@ -80,15 +83,17 @@ function GamePlay() {
             HIT
           </button>
         </div>
-        <div className="dealerCards">
-          {dealerCards.map((card, index) => (
-            <Card key={index + 100} suit={card.suit} rank={card.rank} />
-          ))}
-        </div>
-        <div className="playerCards">
-          {playerCards.map((card, index) => (
-            <Card key={index} suit={card.suit} rank={card.rank} />
-          ))}
+        <div className="dealerCards-container">
+          <div className="dealerCards">
+            {dealerCards.map((card, index) => (
+              <Card key={index + 100} suit={card.suit} rank={card.rank} />
+            ))}
+          </div>
+          <div className="playerCards">
+            {playerCards.map((card, index) => (
+              <Card key={index} suit={card.suit} rank={card.rank} />
+            ))}
+          </div>
         </div>
       </div>
     </>
