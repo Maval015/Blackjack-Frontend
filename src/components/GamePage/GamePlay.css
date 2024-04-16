@@ -10,7 +10,6 @@
     format("truetype");
 }
 
-
 .tableContainer1 {
   position: relative;
   display: flex;
@@ -48,10 +47,34 @@
   color: white;
 }
 
+.dealerCards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .playerCards,
 .dealerCards {
   display: flex;
-  padding-bottom: 20rem;
-  padding-left: 2.5rem;
-  gap: 0.5rem;
+  gap: 1rem;
+}
+
+.playerCards {
+  padding-top: 300px;
+}
+
+.userName1 {
+  position: absolute;
+  transform: translate(-350px,300px);
+  color: white;
+  font-family: 'Alegreya_Sans';
+  font-size: 64px;
+}
+
+.dealer {
+  color: white;
+  font-family: 'Alegreya_Sans';
+  font-size: 64px;
+  position: absolute;
+  transform: translate(-300px,-300px);
 }
