@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Alegreya_SC";
+  src: url("/public/fonts/Alegreya_SC/AlegreyaSC-Regular.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Alegreya_Sans";
+  src: url("/public/fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf")
+    format("truetype");
+}
+
+.table {
+  display: flex;
+  justify-content: flex-end; /* Move the image to the right */
+}
+
+.standHitContainers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

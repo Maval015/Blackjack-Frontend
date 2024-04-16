@@ -1,4 +1,4 @@
-interface PlayGameRequest {
+export interface PlayGameRequest {
   username: string;
   betAmount: number;
 }
