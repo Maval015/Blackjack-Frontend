@@ -11,6 +11,11 @@ export interface GameResponse {
   gameOutcome: string;
 }
 
+export interface Card {
+  suit: string;
+  rank: string;
+}
+
 const BASE_URL = "http://localhost:8080"; // Adjust this URL to match your backend's URL
 
 export const playGame = (request: PlayGameRequest): Promise<GameResponse> => {

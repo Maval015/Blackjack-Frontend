@@ -44,26 +44,6 @@ function PlaceBet() {
     }
   }, [user]);
 
-  // const handleHit = () => {
-  //   hit({ username, betAmount })
-  //     .then((response) => {
-  //       setGameState(response);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Failed to hit", error);
-  //     });
-  // };
-
-  // const handleStand = () => {
-  //   stand({ username, betAmount })
-  //     .then((response) => {
-  //       setGameState(response);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Failed to stand", error);
-  //     });
-  // };
-
   useEffect(() => {
     const fetchUserTokens = async () => {
       if (user) {
@@ -88,50 +68,70 @@ function PlaceBet() {
   return (
     <>
       <NavBar />
-      <img className="table" src="/assets/table.png" alt="Game Table" />
+
       <div className="container">
-        <div className="gameInfo">
-          <h3 className="placeBetText">Place Your Bet!</h3>
-          <p className="amountSelectedText">Amount Selected: ${betAmount}</p>
-          <div className="tokensButton">
-            {betAmounts.map((amount) => (
-              <button
-                className="tokensButton"
-                onClick={() =>
-                  setBetAmount((prev) => {
-                    if (prev + amount <= userTokens) {
-                      return prev + amount;
-                    }
-                    return prev;
-                  })
-                }
-              >
-                <div>
+        <div className="tableContainer">
+          <img className="table" src="/assets/table.png" alt="Game Table" />
+
+          <div className="gameInfo">
+            <div className="textContainer">
+              <h3 className="placeBetText">Place Your Bet!</h3>
+              <p className="amountSelectedText">
+                Amount Selected: ${betAmount}
+              </p>
+            </div>
+            <div className="tokensButton">
+              {betAmounts.map((amount) => (
+                <button
+                  className="tokensButton"
+                  onClick={() =>
+                    setBetAmount((prev) => {
+                      if (prev + amount <= userTokens) {
+                        return prev + amount;
+                      }
+                      return prev;
+                    })
+                  }
+                >
+                  <div>
+                    <img
+                      className="tokens"
+                      src={`/assets/token-${amount}.png`}
+                      alt={`Token ${amount}`}
+                    />
+                  </div>
+                </button>
+              ))}
+
+              {userTokens === betAmounts[betAmounts.length - 1] && (
+                <button
+                  className="tokensButton"
+                  onClick={() => setBetAmount(userTokens)}
+                >
                   <img
                     className="tokens"
-                    src={`/assets/token-${amount}.png`}
-                    alt={`Token ${amount}`}
+                    src={`/assets/token-allin.png`}
+                    alt={`Token All In`}
                   />
-                </div>
-              </button>
-            ))}
+                </button>
+              )}
+            </div>
+            <div className="playerInfoContainer">
+              <div className="playerInfo">
+                <p className="userName">{user}</p>
+                <p className="lineSplit">|</p>
+                <p className="availableTokens">
+                  Available <br /> Tokens: ${userTokens}
+                </p>
+                <button className="clearBetButton" onClick={() => setBetAmount(0)}>
+                  Clear Bet Amount
+                </button>
+              </div>
+              <div>
+                <button className="playButton" onClick={() => startGame()}>PLAY</button>
+              </div>
+            </div>
           </div>
-          {userTokens === betAmounts[betAmounts.length - 1] && (
-            <button
-              className="tokensButton"
-              onClick={() => setBetAmount(userTokens)}
-            >
-              <img
-                className="tokens"
-                src={`/assets/token-allin.png`}
-                alt={`Token All In`}
-              />
-            </button>
-          )}
-          <p>{user}</p>
-          <p>Available Tokens: ${userTokens}</p>
-          <button onClick={() => setBetAmount(0)}>Clear bet amount</button>
-          <button onClick={() => startGame()}>PLAY</button>
         </div>
         <div className="standHitContainer">
           <button className="standButton">STAND</button>
