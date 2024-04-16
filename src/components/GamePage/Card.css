@@ -1,0 +1,32 @@
+.card {
+    width: 100px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: white;
+  }
+  
+  .card-top,
+  .card-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+  
+  .card-center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .spades {
+    color: black;
+  }
+  
+  .hearts {
+    color: red;
+  }
+  
