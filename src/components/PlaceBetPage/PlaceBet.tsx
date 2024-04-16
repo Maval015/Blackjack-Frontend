@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../LogInPage/NavBar";
-import { GameResponse, playGame } from "../../api-calls";
+import { PlayGameRequest, GameResponse, playGame } from "../../api-calls";
 import { UserAuthContext } from "../user-auth-context";
+import "./PlaceBet.css";
 
 const BASE_URL = "http://localhost:8080";
 
-export function PlaceBet() {
+function PlaceBet() {
   const [gameState, setGameState] = useState<GameResponse>({
     playerHand: JSON.stringify([]),
     playerScore: 0,
@@ -25,13 +26,15 @@ export function PlaceBet() {
   const startGame = () => {
     if (!user || !username) return;
 
-    playGame({ username: user!, betAmount })
+    const request: PlayGameRequest = { username: user, betAmount };
+    playGame(request)
       .then((response) => {
+        console.log("Game started successfully:", response);
         setGameState(response);
         navigate("/GamePlay");
       })
       .catch((error) => {
-        console.error("Failed to start game", error);
+        console.error("Error starting game:", error);
       });
   };
 
@@ -85,47 +88,58 @@ export function PlaceBet() {
   return (
     <>
       <NavBar />
-      <div className="gameTable">
-        <div className="table">
-          <img src="/assets/table.png" alt="Game Table" />
-        </div>
-
-        <div>
-          <h3>Place Your Bet!</h3>
-          <p>Amount Selected: ${betAmount}</p>
-          {betAmounts.map((amount) => (
+      <img className="table" src="/assets/table.png" alt="Game Table" />
+      <div className="container">
+        <div className="gameInfo">
+          <h3 className="placeBetText">Place Your Bet!</h3>
+          <p className="amountSelectedText">Amount Selected: ${betAmount}</p>
+          <div className="tokensButton">
+            {betAmounts.map((amount) => (
+              <button
+                className="tokensButton"
+                onClick={() =>
+                  setBetAmount((prev) => {
+                    if (prev + amount <= userTokens) {
+                      return prev + amount;
+                    }
+                    return prev;
+                  })
+                }
+              >
+                <div>
+                  <img
+                    className="tokens"
+                    src={`/assets/token-${amount}.png`}
+                    alt={`Token ${amount}`}
+                  />
+                </div>
+              </button>
+            ))}
+          </div>
+          {userTokens === betAmounts[betAmounts.length - 1] && (
             <button
-              onClick={() =>
-                setBetAmount((prev) => {
-                  if (prev + amount <= userTokens) {
-                    return prev + amount;
-                  }
-                  return prev;
-                })
-              }
+              className="tokensButton"
+              onClick={() => setBetAmount(userTokens)}
             >
               <img
-                src={`/assets/token-${amount}.png`}
-                alt={`Token ${amount}`}
+                className="tokens"
+                src={`/assets/token-allin.png`}
+                alt={`Token All In`}
               />
-            </button>
-          ))}
-          {userTokens === betAmounts[betAmounts.length - 1] && (
-            <button onClick={() => setBetAmount(userTokens)}>
-              <img src={`/assets/token-allin.png`} alt={`Token All In`} />
             </button>
           )}
           <p>{user}</p>
           <p>Available Tokens: ${userTokens}</p>
           <button onClick={() => setBetAmount(0)}>Clear bet amount</button>
-          <button onClick={startGame}>PLAY</button>
+          <button onClick={() => startGame()}>PLAY</button>
         </div>
-      </div>
-
-      <div>
-        <button>STAND</button>
-        <button>HIT</button>
+        <div className="standHitContainer">
+          <button className="standButton">STAND</button>
+          <button className="hitButton">HIT</button>
+        </div>
       </div>
     </>
   );
 }
+
+export default PlaceBet;

@@ -1,12 +1,11 @@
 import React from "react";
-import logo from "./logo.svg";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./components/HomePage/Home";
 import LogIn from "./components/LogInPage/LogIn";
 import CreateAccount from "./components/CreateAccountPage/CreateAccount";
 import { UserAuthProvider } from "./components/user-auth-context";
-import { PlaceBet } from "./components/PlaceBetPage/PlaceBet";
+import PlaceBet from "./components/PlaceBetPage/PlaceBet";
 import GamePlay from "./components/GamePage/GamePlay";
 
 function App() {
