@@ -10,9 +10,7 @@ import GamePlay from "./components/GamePage/GamePlay";
 import { GameResponse } from "./api-calls";
 import { GameStateProvider } from "./components/game-state-context";
 
-
 function App() {
-  
   return (
     <UserAuthProvider>
       <GameStateProvider>

@@ -15,7 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 200px;
+  padding-top: 250px;
 }
 
 .table1 {
@@ -32,7 +32,6 @@
   flex-direction: column;
   gap: 75px;
   margin-left: 70%;
-  padding-top: 50px;
 }
 
 .standButton1,
@@ -47,7 +46,7 @@
   color: white;
 }
 
-.dealerCards-container {
+.Cards-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -60,21 +59,52 @@
 }
 
 .playerCards {
-  padding-top: 300px;
+  transform: translateY(40px);
+}
+
+.dealerCards {
+  transform: translateY(-130px);
 }
 
 .userName1 {
   position: absolute;
-  transform: translate(-350px,300px);
+  transform: translate(-320px, 300px);
   color: white;
-  font-family: 'Alegreya_Sans';
+  font-family: "Alegreya_Sans";
   font-size: 64px;
 }
 
 .dealer {
   color: white;
-  font-family: 'Alegreya_Sans';
+  font-family: "Alegreya_Sans";
   font-size: 64px;
   position: absolute;
-  transform: translate(-300px,-300px);
+  transform: translate(-300px, -300px);
+}
+
+.betAmount1 {
+  position: absolute;
+  color: white;
+  font-size: 48px;
+  font-family: "Alegreya Sans";
+  transform: translate(-320px, 220px);
+}
+
+
+.dealerScore {
+    position: absolute;
+    font-size: 145px;
+    font-family: "Alegreya SC";
+    color: white;
+    padding-left: 140px;
+    transform: translateY(-340px);
+}
+
+.playerScore {
+    position: absolute;
+    font-size: 145px;
+    font-family: "Alegreya SC";
+    color: white;
+    padding-left: 100px;
+    padding-top: 30px;
 }

@@ -4,9 +4,10 @@ import "./Card.css";
 interface CardProps {
   suit: string;
   rank: string;
+  flipped: boolean;
 }
 
-const Card: React.FC<CardProps> = ({ suit, rank }) => {
+const Card: React.FC<CardProps> = ({ suit, rank, flipped }) => {
   const getSuitSymbol = (suit: string) => {
     switch (suit) {
       case "SPADES":
@@ -56,15 +57,23 @@ const Card: React.FC<CardProps> = ({ suit, rank }) => {
   };
 
   return (
-    <div className="card">
-      <div className="card-top">
-        <span>{getSuitSymbol(suit)}</span>
-      </div>
-      <div className="card-center">
-        <span className="rank">{getRankSymbol(rank)}</span>
-      </div>
-      <div className="card-bottom">
-        <span>{getSuitSymbol(suit)}</span>
+    <div className={`card ${flipped ? "flipped" : ""}`}>
+      <div className="card-back">
+        {flipped ? (
+          <img className="flippedCardImg" src="/assets/card-back.png" alt="back of card" />
+        ) : (
+          <>
+            <div className="card-top">
+              <span>{getSuitSymbol(suit)}</span>
+            </div>
+            <div className="card-center">
+              <span className="rank">{getRankSymbol(rank)}</span>
+            </div>
+            <div className="card-bottom">
+              <span>{getSuitSymbol(suit)}</span>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

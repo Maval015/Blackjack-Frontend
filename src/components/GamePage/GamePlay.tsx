@@ -1,22 +1,15 @@
-import React, { useContext, useState } from "react";
-import Card from "./Card"; // Import the Card component
+import React, { useContext, useEffect, useState } from "react";
+import Card from "./Card";
 import { GameResponse, hit, stand } from "../../api-calls";
 import "./GamePlay.css";
 import NavBar from "../LogInPage/NavBar";
 import { GameStateContext } from "../game-state-context";
 import { UserAuthContext } from "../user-auth-context";
+import GameOverModal from "../GameOverModal";
 
 export interface GamePlayProps {
   gameState: GameResponse;
 }
-
-// const jsonResponse = {
-//   playerHand: "ACE of SPADES, EIGHT of SPADES",
-//   playerScore: 19,
-//   dealerHand: "QUEEN of HEARTS, QUEEN of DIAMONDS",
-//   dealerScore: 20,
-//   gameOutcome: "NONE",
-// };
 
 function GamePlay() {
   const { betAmount } = useContext(GameStateContext);
@@ -34,7 +27,7 @@ function GamePlay() {
     hit({
       username,
       betAmount,
-    }) // Assuming hit does not require betAmount
+    })
       .then((response) => {
         setGameState(response);
       })
@@ -47,7 +40,7 @@ function GamePlay() {
     stand({
       username,
       betAmount,
-    }) // Assuming stand does not require betAmount
+    })
       .then((response) => {
         setGameState(response);
       })
@@ -66,6 +59,29 @@ function GamePlay() {
     .split(", ")
     .map(parseCard);
 
+  const { playerScore } = gameState;
+
+  const handleGameOver = (outcome: string) => {
+    // Set the game over state and outcome
+    setIsGameOver(true);
+    setGameOverOutcome(outcome);
+  };
+
+  const checkFinalResponse = () => {
+    // Example logic to determine game outcome based on gameState
+    if (gameState.gameOutcome === "PLAYER_WON") {
+      handleGameOver("You won!");
+    } else if (gameState.gameOutcome === "PLAYER_LOST") {
+      handleGameOver("You lost!");
+    } else if (gameState.gameOutcome === "TIE") {
+      handleGameOver("It's a tie!");
+    }
+  };
+
+  useEffect(() => {
+    checkFinalResponse();
+  }, [gameState]);
+
   return (
     <>
       <NavBar />
@@ -74,6 +90,7 @@ function GamePlay() {
           <img src="/assets/table.png" alt="Game Table" />
           <p className="dealer">DEALER</p>
           <p className="userName1">{user}</p>
+          <p className="betAmount1">${betAmount}</p>
         </div>
         <div className="standHitContainers">
           <button className="standButton1" onClick={() => handleStand()}>
@@ -83,21 +100,51 @@ function GamePlay() {
             HIT
           </button>
         </div>
-        <div className="dealerCards-container">
+        <div className="Cards-container">
           <div className="dealerCards">
             {dealerCards.map((card, index) => (
-              <Card key={index + 100} suit={card.suit} rank={card.rank} />
+              <Card
+                key={index + 100}
+                suit={card.suit}
+                rank={card.rank}
+                flipped={index === 1}
+              />
             ))}
           </div>
           <div className="playerCards">
             {playerCards.map((card, index) => (
-              <Card key={index} suit={card.suit} rank={card.rank} />
+              <Card
+                key={index}
+                suit={card.suit}
+                rank={card.rank}
+                flipped={false}
+              />
             ))}
           </div>
         </div>
+
+        <div className="scoresContainer">
+          <p className="dealerScore">?</p>
+          <p className="playerScore">{playerScore}</p>
+        </div>
+
+        {/* <div>
+          <GameOverModal
+            isGameOngoing={setIsGameOver}
+            outcome={setGameOverOutcome}
+            onClose={() => setIsGameOver(false)}
+          />
+        </div> */}
       </div>
     </>
   );
 }
 
 export default GamePlay;
+function setGameOverOutcome(outcome: string) {
+  throw new Error("Function not implemented.");
+}
+
+function setIsGameOver(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}

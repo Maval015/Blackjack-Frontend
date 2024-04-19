@@ -58,6 +58,7 @@ function PlaceBet() {
   }, [user]);
 
   const betAmounts = [5, 10, 50, 100, 500, 1000] as const;
+  
 
   return (
     <>
