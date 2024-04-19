@@ -23,9 +23,9 @@ export const GameStateContext = createContext<GameStateContext>({
 
 export function GameStateProvider({ children }: { children: React.ReactNode }) {
   const [gameState, setGameState] = useState<GameResponse>({
-    playerHand: JSON.stringify([]),
+    playerHand: "",
     playerScore: 0,
-    dealerHand: JSON.stringify([]),
+    dealerHand: "",
     dealerScore: 0,
     gameOutcome: "",
   });
