@@ -7,7 +7,6 @@ import CreateAccount from "./components/CreateAccountPage/CreateAccount";
 import { UserAuthProvider } from "./components/user-auth-context";
 import PlaceBet from "./components/PlaceBetPage/PlaceBet";
 import GamePlay from "./components/GamePage/GamePlay";
-import { GameResponse } from "./api-calls";
 import { GameStateProvider } from "./components/game-state-context";
 
 function App() {

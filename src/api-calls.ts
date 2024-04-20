@@ -48,7 +48,7 @@ export const hit = (request: PlayGameRequest): Promise<GameResponse> => {
   });
 };
 
-export const stand = (request: PlayGameRequest) => {
+export const stand = (request: PlayGameRequest): Promise<Array<GameResponse>>  => {
   return fetch(`${BASE_URL}/api/stand`, {
     method: "POST",
     headers: {

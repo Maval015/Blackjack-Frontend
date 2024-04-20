@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../LogInPage/NavBar";
-import { PlayGameRequest, GameResponse, playGame } from "../../api-calls";
+import { playGame } from "../../api-calls";
 import { UserAuthContext } from "../user-auth-context";
 import "./PlaceBet.css";
 import { GameStateContext } from "../game-state-context";
@@ -9,7 +9,7 @@ import { GameStateContext } from "../game-state-context";
 const BASE_URL = "http://localhost:8080";
 
 function PlaceBet() {
-  const { gameState, setGameState } = useContext(GameStateContext);
+  const { setGameState } = useContext(GameStateContext);
   const { betAmount, setBetAmount } = useContext(GameStateContext);
 
   const [username, setUsername] = useState("");

@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, } from "react";
 import Card from "./Card";
 import { GameResponse, hit, stand } from "../../api-calls";
 import "./GamePlay.css";
 import NavBar from "../LogInPage/NavBar";
 import { GameStateContext } from "../game-state-context";
 import { UserAuthContext } from "../user-auth-context";
-import GameOverModal from "../GameOverModal";
 
 export interface GamePlayProps {
   gameState: GameResponse;
@@ -41,7 +40,7 @@ function GamePlay() {
       username: user!,
       betAmount,
     })
-      .then((res: Array<GameResponse>) => {
+      .then((res) => {
         const response = res[res.length - 1];
         setGameState(response);
       })
