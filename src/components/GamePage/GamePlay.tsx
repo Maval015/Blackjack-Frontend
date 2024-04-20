@@ -15,7 +15,7 @@ function GamePlay() {
   const { betAmount } = useContext(GameStateContext);
 
   const { gameState, setGameState } = useContext(GameStateContext);
-  const [username] = useState("");
+
   const { user } = useContext(UserAuthContext);
 
   const parseCard = (cardString: string) => {
@@ -25,7 +25,7 @@ function GamePlay() {
 
   const handleHit = () => {
     hit({
-      username,
+      username: user!,
       betAmount,
     })
       .then((response) => {
@@ -38,10 +38,11 @@ function GamePlay() {
 
   const handleStand = () => {
     stand({
-      username,
+      username: user!,
       betAmount,
     })
-      .then((response) => {
+      .then((res: Array<GameResponse>) => {
+        const response = res[res.length - 1];
         setGameState(response);
       })
       .catch((error) => {
@@ -60,27 +61,6 @@ function GamePlay() {
     .map(parseCard);
 
   const { playerScore } = gameState;
-
-  const handleGameOver = (outcome: string) => {
-    // Set the game over state and outcome
-    setIsGameOver(true);
-    setGameOverOutcome(outcome);
-  };
-
-  const checkFinalResponse = () => {
-    // Example logic to determine game outcome based on gameState
-    if (gameState.gameOutcome === "PLAYER_WON") {
-      handleGameOver("You won!");
-    } else if (gameState.gameOutcome === "PLAYER_LOST") {
-      handleGameOver("You lost!");
-    } else if (gameState.gameOutcome === "TIE") {
-      handleGameOver("It's a tie!");
-    }
-  };
-
-  useEffect(() => {
-    checkFinalResponse();
-  }, [gameState]);
 
   return (
     <>
@@ -104,10 +84,10 @@ function GamePlay() {
           <div className="dealerCards">
             {dealerCards.map((card, index) => (
               <Card
-                key={index + 100}
+                key={index}
                 suit={card.suit}
                 rank={card.rank}
-                flipped={index === 1}
+                flipped={gameState.gameOutcome === "" && index === 1}
               />
             ))}
           </div>
@@ -123,28 +103,27 @@ function GamePlay() {
           </div>
         </div>
 
+        {gameState.gameOutcome === "PLAYER_WON" && (
+          <div className="gameOutcome">You won!</div>
+        )}
+
+        {gameState.gameOutcome === "PLAYER_LOST" && (
+          <div className="gameOutcome">You lost!</div>
+        )}
+
+        {gameState.gameOutcome === "TIE" && (
+          <div className="gameOutcome">It's a tie!</div>
+        )}
+
         <div className="scoresContainer">
-          <p className="dealerScore">?</p>
+          <p className="dealerScore">
+            {gameState.gameOutcome === "" ? "?" : gameState.dealerScore}
+          </p>
           <p className="playerScore">{playerScore}</p>
         </div>
-
-        {/* <div>
-          <GameOverModal
-            isGameOngoing={setIsGameOver}
-            outcome={setGameOverOutcome}
-            onClose={() => setIsGameOver(false)}
-          />
-        </div> */}
       </div>
     </>
   );
 }
 
 export default GamePlay;
-function setGameOverOutcome(outcome: string) {
-  throw new Error("Function not implemented.");
-}
-
-function setIsGameOver(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}

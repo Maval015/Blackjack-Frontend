@@ -34,7 +34,7 @@ export const playGame = (request: PlayGameRequest): Promise<GameResponse> => {
 };
 
 export const hit = (request: PlayGameRequest): Promise<GameResponse> => {
-  return fetch(`${BASE_URL}/hit`, {
+  return fetch(`${BASE_URL}/api/hit`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -48,8 +48,8 @@ export const hit = (request: PlayGameRequest): Promise<GameResponse> => {
   });
 };
 
-export const stand = (request: PlayGameRequest): Promise<GameResponse> => {
-  return fetch(`${BASE_URL}/stand`, {
+export const stand = (request: PlayGameRequest) => {
+  return fetch(`${BASE_URL}/api/stand`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
